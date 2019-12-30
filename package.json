@@ -1,22 +1,25 @@
 {
-  "name": "tgv-sncf-tools",
-  "version": "0.0.1",
-  "description": "Serie of utils to gather information from SNCF train reservation online service",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --detectOpenHandles --logHeapUsage --runInBand --verbose"
-  },
-  "keywords": [
-    "SNCF",
-    "train",
-    "reservation"
-  ],
-  "author": "Alexandre PALO",
-  "license": "LGPL-3.0-or-later",
-  "dependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/node": "^7.7.7",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.7.7"
-  }
+    "name": "tgv-sncf-tools",
+    "version": "0.0.1",
+    "repository": "https://github.com/AlexandrePalo/tgv-sncf-tools",
+    "description": "Serie of utils to gather information from SNCF train reservation online service",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --detectOpenHandles --logHeapUsage --runInBand --verbose"
+    },
+    "keywords": [
+        "SNCF",
+        "train",
+        "reservation"
+    ],
+    "author": "Alexandre PALO",
+    "license": "LGPL-3.0-or-later",
+    "dependencies": {
+        "@babel/core": "^7.7.7",
+        "@babel/node": "^7.7.7",
+        "@babel/plugin-transform-runtime": "^7.7.6",
+        "@babel/preset-env": "^7.7.7",
+        "moment-timezone": "^0.5.27",
+        "node-fetch": "^2.6.0"
+    }
 }
