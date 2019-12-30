@@ -1,0 +1,16 @@
+{
+  "name": "tgv-sncf-tools",
+  "version": "0.0.1",
+  "description": "Serie of utils to gather information from SNCF train reservation online service",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --logHeapUsage --runInBand --verbose"
+  },
+  "keywords": [
+    "SNCF",
+    "train",
+    "reservation"
+  ],
+  "author": "Alexandre PALO",
+  "license": "LGPL-3.0-or-later"
+}
