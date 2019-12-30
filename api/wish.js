@@ -1,5 +1,4 @@
 import fetch from 'node-fetch'
-import moment from 'moment-timezone'
 
 async function getWish(originCode, destinationCode, fromDatetime) {
     // Check env variables
@@ -62,4 +61,49 @@ async function getWish(originCode, destinationCode, fromDatetime) {
         ],
         salesMarket: 'fr-FR'
     }
+
+    // First wish call
+    const jsonWishCreated = await fetch(wishesUrl, {
+        method: 'post',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json',
+            'User-Agent':
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
+        }
+    })
+        .then(async res => {
+            return await res.json()
+        })
+        .catch(err => {
+            throw new Error(
+                'getWish - SNCF API response was not expected during first wish call.'
+            )
+        })
+    const wishId = jsonWishCreated.id
+
+    // Pause 200 ms
+    await new Promise(resolve => setTimeout(resolve, 200))
+
+    // Full wish call
+    const fullWish = await fetch(`${fullWishBaseUrl}${wishId}`, {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'User-Agent':
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
+        }
+    })
+        .then(async res => {
+            return await res.json()
+        })
+        .catch(err => {
+            throw new Error(
+                'getWish - SNCF API response was not expected during full wish call.'
+            )
+        })
+
+    return fullWish
 }
+
+export default getWish
