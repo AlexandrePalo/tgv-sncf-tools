@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import { STOP_CODES } from './constants'
 
 async function getWish(originCode, destinationCode, fromDatetime) {
     // Check env variables
@@ -9,16 +10,13 @@ async function getWish(originCode, destinationCode, fromDatetime) {
     // Check function inputs
     if (
         !originCode ||
-        typeof originCode !== 'string' ||
-        !(await Station.findOne({ code: originCode })) ||
+        !STOP_CODES.includes(originCode) ||
         !destinationCode ||
-        typeof destinationCode !== 'string' ||
-        !(await Station.findOne({ code: destinationCode })) ||
+        !STOP_CODES.includes(destinationCode) ||
         !fromDatetime ||
         !fromDatetime.match(
             /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}/g
-        ) ||
-        (user && !(typeof user === 'object'))
+        )
     ) {
         throw new Error('getWish - Bad function parameters.')
     }
