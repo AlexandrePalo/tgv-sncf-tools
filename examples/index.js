@@ -3,14 +3,16 @@ const chalk = require('chalk')
 const moment = require('moment-timezone')
 const { travelsProposals } = require('../dist/bundle')
 
-console.log(travelsProposals)
-
 const origin = { code: 'FRADE', name: 'Metz Ville' }
 const destination = { code: 'FRPST', name: 'Paris Est' }
 const fromDatetime = `${moment()
     .add(1, 'M')
     .format('YYYY-MM-DD')}T10:00:00`
 const toDatetime = `${moment(fromDatetime).format('YYYY-MM-DD')}T18:00:00`
+
+const humanizeDuration = duration => {
+    return `${Math.trunc(duration / 3600)}h${(duration % 3600) / 60}`
+}
 
 console.log(chalk`
 {bold TGV-SNCF-TOOLS example:}
@@ -24,8 +26,31 @@ const spinner = ora('Loading data').start()
 
 travelsProposals(origin.code, destination.code, fromDatetime, toDatetime).then(
     data => {
-        console.log('\n')
-        console.log(data)
         spinner.stop()
+
+        console.log(chalk`{bold ${data.length}} travels found:`)
+        for (let i = 0; i < data.length; i++) {
+            const d = data[i]
+            const minPrice = d.secondClassOffers
+                .concat(d.firstClassOffers)
+                .reduce((min, o) => (o.amount < min ? o.amount : min), Infinity)
+            const maxPrice = d.secondClassOffers
+                .concat(d.firstClassOffers)
+                .reduce(
+                    (max, o) => (o.amount > max ? o.amount : max),
+                    -Infinity
+                )
+            console.log(
+                chalk`#${i + 1} • ${moment(d.departureDate).format(
+                    'HH:mm'
+                )} → ${moment(d.arrivalDate).format(
+                    'HH:mm'
+                )} - ${humanizeDuration(d.duration)} - ${
+                    d.transporter
+                } train n°${
+                    d.vehicleNumber
+                } - {bold.red [${minPrice}€..${maxPrice}€]}`
+            )
+        }
     }
 )

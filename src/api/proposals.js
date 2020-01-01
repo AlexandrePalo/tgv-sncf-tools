@@ -3,13 +3,17 @@ import moment from 'moment-timezone'
 
 import { URLS } from './constants'
 
-async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
+async function getTravelsProposalsWithFares(
+    fullWish,
+    fromDatetime,
+    toDatetime
+) {
     /**
      * Gather travels proposals from SNCF online service, according to created wish object.
      * @param {object} fullWish - SNCF wish object.
      * @param {string} fromDatetime - Research start datetime, must be YYYY-MM-DDTHH:mm:ss.
      * @param {string} [toDatetime] - Research end datetime, must be YYYY-MM-DDTHH:mm:ss.
-     * @return {string} Array of SNCF travels proposals, see ReadMe for full format details.
+     * @return {object} proposals: Array of SNCF travels proposals, see ReadMe for full format details. fares: array of fares conditions.
      */
 
     // Check env variables
@@ -39,6 +43,7 @@ async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
     // Call
     let shouldStop = false
     let proposals = []
+    let fares = []
 
     // Loop API calls
     do {
@@ -72,6 +77,8 @@ async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
                 return await res.json()
             })
             .then(json => {
+                fares = json.fares
+
                 if (proposals.length > 0) {
                     json.travelProposals = json.travelProposals.slice(1)
                 }
@@ -131,7 +138,7 @@ async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
         }
     })
 
-    return proposals
+    return { proposals, fares }
 }
 
-export default getTravelsProposals
+export default getTravelsProposalsWithFares
