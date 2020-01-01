@@ -2,6 +2,14 @@ import fetch from 'node-fetch'
 import { STOP_CODES } from './constants'
 
 async function getWish(originCode, destinationCode, fromDatetime) {
+    /**
+     * Create wish object from SNCF online service, according input parameters.
+     * @param {object} fullWish - SNCF wish object.
+     * @param {string} fromDatetime - Research start datetime, must be YYYY-MM-DDTHH:mm:ss.
+     * @param {string} [toDatetime] - Research end datetime, must be YYYY-MM-DDTHH:mm:ss.
+     * @return {string} Array of SNCF travels proposals, see ReadMe for full format details.
+     */
+
     // Check env variables
     if (!process.env.WISHES_URL || !process.env.FULL_WISH_BASE_URL) {
         throw new Error('getWish - Env variables not properly set.')

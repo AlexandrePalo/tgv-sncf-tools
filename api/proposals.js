@@ -1,10 +1,18 @@
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
 
-async function getTravelProposals(fullWish, fromDatetime, toDatetime) {
+async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
+    /**
+     * Gather travels proposals from SNCF online service, according to created wish object.
+     * @param {object} fullWish - SNCF wish object.
+     * @param {string} fromDatetime - Research start datetime, must be YYYY-MM-DDTHH:mm:ss.
+     * @param {string} [toDatetime] - Research end datetime, must be YYYY-MM-DDTHH:mm:ss.
+     * @return {string} Array of SNCF travels proposals, see ReadMe for full format details.
+     */
+
     // Check env variables
     if (!process.env.TRAIN_URL || !process.env.TRAIN_NEXT_URL) {
-        throw new Error('getTravelProposals - Env variables not properly set.')
+        throw new Error('getTravelsProposals - Env variables not properly set.')
     }
 
     // Check function inputs
@@ -19,7 +27,7 @@ async function getTravelProposals(fullWish, fromDatetime, toDatetime) {
                 /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}/g
             ))
     ) {
-        throw new Error('getTravelProposals - Bad function parameters.')
+        throw new Error('getTravelsProposals - Bad function parameters.')
     }
 
     // API urls
@@ -124,4 +132,4 @@ async function getTravelProposals(fullWish, fromDatetime, toDatetime) {
     return proposals
 }
 
-export default getTravelProposals
+export default getTravelsProposals
