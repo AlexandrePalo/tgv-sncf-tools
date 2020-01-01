@@ -1,6 +1,6 @@
-import getTravelsProposals from './api/getTravelsProposals'
-import getWish from './api/getWish'
-import { STOP_CODES } from './api/constants'
+import getTravelsProposals from './api/proposals'
+import getWish from './api/wish'
+import { STOP_CODES, URLS } from './api/constants'
 
 const travelsProposals = async (
     originCode,
@@ -17,12 +17,12 @@ const travelsProposals = async (
      * @return {string} Array of SNCF travels proposals, see ReadMe for full format details.
      */
 
-    // Check env variables
+    // Check urls variables
     if (
-        !process.env.WISHES_URL ||
-        !process.env.FULL_WISH_BASE_URL ||
-        !process.env.TRAIN_URL ||
-        !process.env.TRAIN_NEXT_URL
+        !URLS.WISHES_URL ||
+        !URLS.FULL_WISH_BASE_URL ||
+        !URLS.TRAIN_URL ||
+        !URLS.TRAIN_NEXT_URL
     ) {
         throw new Error('Env variables not properly set.')
     }

@@ -5,10 +5,10 @@
     "description": "Serie of utils to gather information from SNCF train reservation online service",
     "main": "./dist/index.js",
     "scripts": {
-        "clean": "rm -f lib",
+        "clean": "rm -rf dist",
         "test": "jest --detectOpenHandles --logHeapUsage --runInBand --verbose",
-        "build": "babel ./src/index.js -d ./dist",
-        "start": "npm run build && node ./dist/index.js"
+        "build": "webpack",
+        "example": "node ./examples/index.js"
     },
     "keywords": [
         "SNCF",
@@ -24,5 +24,12 @@
         "@babel/preset-env": "^7.7.7",
         "moment-timezone": "^0.5.27",
         "node-fetch": "^2.6.0"
+    },
+    "devDependencies": {
+        "babel-loader": "^8.0.6",
+        "chalk": "^3.0.0",
+        "ora": "^4.0.3",
+        "webpack": "^4.41.5",
+        "webpack-cli": "^3.3.10"
     }
 }

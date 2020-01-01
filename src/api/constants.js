@@ -9,4 +9,12 @@ const STOP_CODES = [
     ['LULUX', 'Luxembourg']
 ].map(i => i[0])
 
-export { STOP_CODES }
+const URLS = {
+    WISHES_URL: 'https://www.oui.sncf/wishes-api/wishes',
+    FULL_WISH_BASE_URL: 'https://www.oui.sncf/proposition/rest/wishes/',
+    TRAIN_URL: 'https://www.oui.sncf/proposition/rest/travels/outward/train',
+    TRAIN_NEXT_URL:
+        'https://www.oui.sncf/proposition/rest/travels/outward/train/next'
+}
+
+export { STOP_CODES, URLS }

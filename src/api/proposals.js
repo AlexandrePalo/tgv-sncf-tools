@@ -1,6 +1,8 @@
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
 
+import { URLS } from './constants'
+
 async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
     /**
      * Gather travels proposals from SNCF online service, according to created wish object.
@@ -11,7 +13,7 @@ async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
      */
 
     // Check env variables
-    if (!process.env.TRAIN_URL || !process.env.TRAIN_NEXT_URL) {
+    if (!URLS.TRAIN_URL || !URLS.TRAIN_NEXT_URL) {
         throw new Error('getTravelsProposals - Env variables not properly set.')
     }
 
@@ -31,8 +33,8 @@ async function getTravelsProposals(fullWish, fromDatetime, toDatetime) {
     }
 
     // API urls
-    const trainUrl = process.env.TRAIN_URL
-    const trainNextUrl = process.env.TRAIN_NEXT_URL
+    const trainUrl = URLS.TRAIN_URL
+    const trainNextUrl = URLS.TRAIN_NEXT_URL
 
     // Call
     let shouldStop = false

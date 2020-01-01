@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import { STOP_CODES } from './constants'
+import { STOP_CODES, URLS } from './constants'
 
 async function getWish(originCode, destinationCode, fromDatetime) {
     /**
@@ -11,7 +11,7 @@ async function getWish(originCode, destinationCode, fromDatetime) {
      */
 
     // Check env variables
-    if (!process.env.WISHES_URL || !process.env.FULL_WISH_BASE_URL) {
+    if (!URLS.WISHES_URL || !URLS.FULL_WISH_BASE_URL) {
         throw new Error('getWish - Env variables not properly set.')
     }
 
@@ -30,8 +30,8 @@ async function getWish(originCode, destinationCode, fromDatetime) {
     }
 
     // API Urls
-    const wishesUrl = process.env.WISHES_URL
-    const fullWishBaseUrl = process.env.FULL_WISH_BASE_URL
+    const wishesUrl = URLS.WISHES_URL
+    const fullWishBaseUrl = URLS.FULL_WISH_BASE_URL
 
     // Call
     const body = {
@@ -54,12 +54,11 @@ async function getWish(originCode, destinationCode, fromDatetime) {
         travelClass: 'SECOND', // variable
         passengers: [
             {
-                age: 30, // variable
-                typology: 'ADULT', // variable YOUND / ADULT
+                typology: 'ADULT',
                 firstname: '',
                 lastname: '',
                 customerId: '',
-                discountCard,
+                discountCard: { type: 'NONE', number: '' },
                 fidelityCard: { type: 'NONE', number: '' },
                 promoCode: '',
                 bicycle: null
