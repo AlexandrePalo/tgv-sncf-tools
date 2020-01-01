@@ -1,3 +1,6 @@
+# Production folder
+dist
+
 # Logs
 *.log
 npm-debug.log*

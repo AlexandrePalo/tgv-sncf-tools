@@ -3,9 +3,12 @@
     "version": "0.0.1",
     "repository": "https://github.com/AlexandrePalo/tgv-sncf-tools",
     "description": "Serie of utils to gather information from SNCF train reservation online service",
-    "main": "index.js",
+    "main": "./dist/index.js",
     "scripts": {
-        "test": "jest --detectOpenHandles --logHeapUsage --runInBand --verbose"
+        "clean": "rm -f lib",
+        "test": "jest --detectOpenHandles --logHeapUsage --runInBand --verbose",
+        "build": "babel ./src/index.js -d ./dist",
+        "start": "npm run build && node ./dist/index.js"
     },
     "keywords": [
         "SNCF",
