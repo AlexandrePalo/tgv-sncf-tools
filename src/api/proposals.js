@@ -6,7 +6,7 @@ import { URLS } from './constants'
 async function getTravelsProposalsWithFares(
     fullWish,
     fromDatetime,
-    toDatetime
+    toDatetime = null
 ) {
     /**
      * Gather travels proposals from SNCF online service, according to created wish object.
@@ -18,12 +18,15 @@ async function getTravelsProposalsWithFares(
 
     // Check urls variables
     if (!URLS.TRAIN_URL || !URLS.TRAIN_NEXT_URL) {
-        throw new Error('getTravelsProposals - Env variables not properly set.')
+        throw new Error(
+            'getTravelsProposalsWithFares - Env variables not properly set.'
+        )
     }
 
     // Check function inputs
     if (
         !fullWish ||
+        !fullWish.id ||
         !fromDatetime ||
         !fromDatetime.match(
             /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}/g
@@ -33,7 +36,9 @@ async function getTravelsProposalsWithFares(
                 /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}/g
             ))
     ) {
-        throw new Error('getTravelsProposals - Bad function parameters.')
+        throw new Error(
+            'getTravelsProposalsWithFares - Bad function parameters.'
+        )
     }
 
     // API urls
@@ -102,7 +107,7 @@ async function getTravelsProposalsWithFares(
             })
             .catch(err => {
                 throw new Error(
-                    'getTravelProposals - SNCF API response was not expected during proposals call.'
+                    'getTravelsProposalsWithFares - SNCF API response was not expected during proposals call.'
                 )
             })
     } while (!shouldStop)

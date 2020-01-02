@@ -10,8 +10,8 @@ describe('Function getWish', () => {
         Math.floor(Math.random() * (STOP_CODES.length - 1))
     ]
     const fromDatetime = `${moment()
-        .add(7, 'days')
-        .format('YYYY-MM-DD[T]')}08:00:00`
+        .day(0 + 6)
+        .format('YYYY-MM-DD[T]')}08:00:00` // Next saturday
 
     test('It should raise an error without proper originCode', async () => {
         expect.assertions(1)
