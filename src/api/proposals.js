@@ -16,7 +16,7 @@ async function getTravelsProposalsWithFares(
      * @return {object} proposals: Array of SNCF travels proposals, see ReadMe for full format details. fares: array of fares conditions.
      */
 
-    // Check env variables
+    // Check urls variables
     if (!URLS.TRAIN_URL || !URLS.TRAIN_NEXT_URL) {
         throw new Error('getTravelsProposals - Env variables not properly set.')
     }

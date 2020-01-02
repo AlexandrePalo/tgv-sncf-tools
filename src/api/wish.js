@@ -4,13 +4,13 @@ import { STOP_CODES, URLS } from './constants'
 async function getWish(originCode, destinationCode, fromDatetime) {
     /**
      * Create wish object from SNCF online service, according input parameters.
-     * @param {object} fullWish - SNCF wish object.
+     * @param {string} originCode - SNCF station code of the origin station, must be in STOP_CODES.
+     * @param {string} destinationCode - SNCF station code of the origin station, must be in STOP_CODES.
      * @param {string} fromDatetime - Research start datetime, must be YYYY-MM-DDTHH:mm:ss.
-     * @param {string} [toDatetime] - Research end datetime, must be YYYY-MM-DDTHH:mm:ss.
-     * @return {string} Array of SNCF travels proposals, see ReadMe for full format details.
+     * @return {object} Wish object created from SNCF online service. Can be used to gather travels proposals from the same service.
      */
 
-    // Check env variables
+    // Check urls variables
     if (!URLS.WISHES_URL || !URLS.FULL_WISH_BASE_URL) {
         throw new Error('getWish - Env variables not properly set.')
     }
