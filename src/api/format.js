@@ -94,7 +94,7 @@ const formatSecondClassOffers = (secondClassOffers, fares) => {
 const formatTravelsProposals = (travelsProposals, fares) => {
     return travelsProposals.map(tp => ({
         id: tp.id,
-        unsellableReason: tp.unsellableReason,
+        unsellableReason: tp.unsellableReason ? tp.unsellableReason.code : null,
         departureDate: tp.departureDate,
         arrivalDate: tp.arrivalDate,
         duration: tp.duration,
