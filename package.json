@@ -1,7 +1,10 @@
 {
     "name": "tgv-sncf-tools",
     "version": "0.0.1",
-    "repository": "https://github.com/AlexandrePalo/tgv-sncf-tools",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AlexandrePalo/tgv-sncf-tools.git"
+    },
     "description": "Serie of utils to gather information from SNCF train reservation online service",
     "main": "./dist/index.js",
     "scripts": {
@@ -33,5 +36,13 @@
         "ora": "^4.0.3",
         "webpack": "^4.41.5",
         "webpack-cli": "^3.3.10"
+    },
+    "bugs": {
+        "url": "https://github.com/AlexandrePalo/tgv-sncf-tools/issues"
+    },
+    "homepage": "https://github.com/AlexandrePalo/tgv-sncf-tools#readme",
+    "directories": {
+        "example": "examples",
+        "test": "tests"
     }
 }
