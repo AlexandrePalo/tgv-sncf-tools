@@ -15,7 +15,7 @@ const travelsProposals = async (
      * @param {string} destinationCode - SNCF station code of the origin station, must be in STOP_CODES.
      * @param {string} fromDatetime - Research start datetime, must be YYYY-MM-DDTHH:mm:ss.
      * @param {string} [toDatetime] - Research end datetime if needed, must be YYYY-MM-DDTHH:mm:ss.
-     * @return {string} Array of SNCF travels proposals, see ReadMe for full format details.
+     * @return {Array} Array of SNCF travels proposals, see ReadMe for full format details.
      */
 
     // Check urls variables
