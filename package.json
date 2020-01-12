@@ -1,6 +1,6 @@
 {
     "name": "tgv-sncf-tools",
-    "version": "0.0.1",
+    "version": "1.O.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/AlexandrePalo/tgv-sncf-tools.git"
