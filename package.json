@@ -6,7 +6,7 @@
         "url": "git+https://github.com/AlexandrePalo/tgv-sncf-tools.git"
     },
     "description": "Serie of utils to gather information from SNCF train reservation online service",
-    "main": "./dist/index.js",
+    "main": "./dist/bundle.js",
     "scripts": {
         "clean": "rm -rf dist",
         "test": "jest --detectOpenHandles --logHeapUsage --runInBand --verbose",
