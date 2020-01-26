@@ -1,4 +1,4 @@
-# TGV SNCF TOOLS   [![Build Status](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools.svg?branch=master)](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools)
+# TGV SNCF TOOLS   [![npm](https://img.shields.io/npm/v/tgv-sncf-tools)](https://www.npmjs.com/package/tgv-sncf-tools) [![Build Status](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools.svg?branch=master)](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools)
 
 This package is a suite of tools to gather informations from the SNCF public website, concerning TGV travels.
 
