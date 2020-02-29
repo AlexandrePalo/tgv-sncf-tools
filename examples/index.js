@@ -25,9 +25,6 @@ the {red ${moment(fromDatetime).format('DD/MM/YYYY')}} between {red ${moment(
 `)
 const spinner = ora('Loading data').start()
 
-fromDatetime = '2020-03-20T10:00:00'
-toDatetime = null
-
 travelsProposals(origin.code, destination.code, fromDatetime, toDatetime).then(
     data => {
         spinner.stop()
