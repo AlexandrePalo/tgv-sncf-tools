@@ -82,7 +82,9 @@ async function getTravelsProposalsWithFares(
                 return await res.json()
             })
             .then(json => {
-                fares = json.fares
+                fares = [...fares, ...json.fares].filter((v, i, self) => {
+                    return self.map(x => x.label).indexOf(v.label) === i
+                })
 
                 if (proposals.length > 0) {
                     json.travelProposals = json.travelProposals.slice(1)

@@ -15,13 +15,11 @@ SNCF is the french firm to travel by train in France.
 
 ### Returned:
 
--   `{Object}`
+-   `{Array}` Array of SNCF travels proposals, including:
 
-    -   `proposals {Array}` Array of SNCF travels proposals, including:
-        -   Available travels for the given inputs (only direct travels)
-        -   Price for available solutions (1st class, 2nd class)
-        -   Train number and transporter name (Ouigo, TGV Inoui)
-    -   `fares {Array}` Array of SNCF fares.
+    -   Available travels for the given inputs (only direct travels)
+    -   Price for available solutions (1st class, 2nd class)
+    -   Train number and transporter name (Ouigo, TGV Inoui)
 
 -   A `travel proposal` is designed as :
 

@@ -79,45 +79,57 @@ const formatSecondClassOffers = (secondClassOffers, fares) => {
             id: sco.id,
             amount: sco.amount,
             flexibility: sco.proposalFlexibility.flexibility,
-            fares: {
-                id: f.id,
-                label: f.label,
-                code: f.code,
-                returnMandatory: f.returnMandatory,
-                conditionsVerboseFrench: f.conditions,
-                advantageCard: f.advantageCard
-            }
+            fares: f
+                ? {
+                      id: f.id,
+                      label: f.label,
+                      code: f.code,
+                      returnMandatory: f.returnMandatory,
+                      conditionsVerboseFrench: f.conditions,
+                      advantageCard: f.advantageCard
+                  }
+                : undefined
         }
     })
 }
 
 const formatTravelsProposals = (travelsProposals, fares) => {
-    return travelsProposals.map(tp => ({
-        id: tp.id,
-        unsellableReason: tp.unsellableReason ? tp.unsellableReason.code : null,
-        departureDate: tp.departureDate,
-        arrivalDate: tp.arrivalDate,
-        duration: tp.duration,
-        functionalId: tp.functionalId,
-        origin: {
-            station: tp.origin.station.label,
-            city: tp.origin.city.label,
-            longitude: tp.origin.longitude,
-            latitude: tp.origin.latitude
-        },
-        destination: {
-            station: tp.destination.station.label,
-            city: tp.destination.city.label,
-            longitude: tp.destination.longitude,
-            latitude: tp.destination.latitude
-        },
-        segmentId: tp.segments[0].id,
-        transporter: tp.segments[0].transporter,
-        vehicleNumber: tp.segments[0].vehicleNumber,
-        vehicleType: tp.segments[0].vehicleType,
-        firstClassOffers: formatFirstClassOffers(tp.firstClassOffers, fares),
-        secondClassOffers: formatSecondClassOffers(tp.secondClassOffers, fares)
-    }))
+    return travelsProposals.map(tp => {
+        return {
+            id: tp.id,
+            unsellableReason: tp.unsellableReason
+                ? tp.unsellableReason.code
+                : null,
+            departureDate: tp.departureDate,
+            arrivalDate: tp.arrivalDate,
+            duration: tp.duration,
+            functionalId: tp.functionalId,
+            origin: {
+                station: tp.origin.station.label,
+                city: tp.origin.city.label,
+                longitude: tp.origin.longitude,
+                latitude: tp.origin.latitude
+            },
+            destination: {
+                station: tp.destination.station.label,
+                city: tp.destination.city.label,
+                longitude: tp.destination.longitude,
+                latitude: tp.destination.latitude
+            },
+            segmentId: tp.segments[0].id,
+            transporter: tp.segments[0].transporter,
+            vehicleNumber: tp.segments[0].vehicleNumber,
+            vehicleType: tp.segments[0].vehicleType,
+            firstClassOffers: formatFirstClassOffers(
+                tp.firstClassOffers,
+                fares
+            ),
+            secondClassOffers: formatSecondClassOffers(
+                tp.secondClassOffers,
+                fares
+            )
+        }
+    })
 }
 
 export default formatTravelsProposals
