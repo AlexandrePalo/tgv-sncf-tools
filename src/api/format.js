@@ -55,7 +55,7 @@
 
 const formatFirstClassOffers = (firstClassOffers, fares) => {
     return firstClassOffers.offers.map(fco => {
-        const f = fares.find(f => f.label === fco.passengerOffers[0].fares)
+        const f = fares.find(f => f.label === fco.passengerOffers[0].fares[0])
         return {
             id: fco.id,
             amount: fco.amount,
@@ -74,7 +74,7 @@ const formatFirstClassOffers = (firstClassOffers, fares) => {
 
 const formatSecondClassOffers = (secondClassOffers, fares) => {
     return secondClassOffers.offers.map(sco => {
-        const f = fares.find(f => f.label === sco.passengerOffers[0].fares)
+        const f = fares.find(f => f.label === sco.passengerOffers[0].fares[0])
         return {
             id: sco.id,
             amount: sco.amount,

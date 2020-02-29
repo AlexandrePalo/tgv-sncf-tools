@@ -1,4 +1,4 @@
-# TGV SNCF TOOLS   [![npm](https://img.shields.io/npm/v/tgv-sncf-tools)](https://www.npmjs.com/package/tgv-sncf-tools) [![Build Status](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools.svg?branch=master)](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools)
+# TGV SNCF TOOLS [![npm](https://img.shields.io/npm/v/tgv-sncf-tools)](https://www.npmjs.com/package/tgv-sncf-tools) [![Build Status](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools.svg?branch=master)](https://travis-ci.com/AlexandrePalo/tgv-sncf-tools)
 
 This package is a suite of tools to gather informations from the SNCF public website, concerning TGV travels.
 
@@ -15,12 +15,16 @@ SNCF is the french firm to travel by train in France.
 
 ### Returned:
 
--   `{Array}` Array of SNCF travels proposals, including:
-    -   Available travels for the given inputs (only direct travels)
-    -   Price for available solutions (1st class, 2nd class)
-    -   Train number and transporter name (Ouigo, TGV Inoui)
-    
-- A `travel proposal` is designed as :
+-   `{Object}`
+
+    -   `proposals {Array}` Array of SNCF travels proposals, including:
+        -   Available travels for the given inputs (only direct travels)
+        -   Price for available solutions (1st class, 2nd class)
+        -   Train number and transporter name (Ouigo, TGV Inoui)
+    -   `fares {Array}` Array of SNCF fares.
+
+-   A `travel proposal` is designed as :
+
 ```
  *  @param {string} id - SNCF proposal unique ID, type GUID
  *  @param {string} segmentId - SNCF segment unique ID, type GUID

@@ -1,4 +1,4 @@
-import getTravelsProposals from './api/proposals'
+import getTravelsProposalsWithFares from './api/proposals'
 import getWish from './api/wish'
 import formatTravelsProposals from './api/format'
 import { STOP_CODES, URLS } from './api/constants'
@@ -54,7 +54,7 @@ const travelsProposals = async (
         // Pause 200 ms
         await new Promise(resolve => setTimeout(resolve, 200))
         // Proposals
-        const { proposals, fares } = await getTravelsProposals(
+        const { proposals, fares } = await getTravelsProposalsWithFares(
             wish,
             fromDatetime,
             toDatetime
