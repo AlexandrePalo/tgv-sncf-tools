@@ -61,3 +61,6 @@ typings/
 
 # Lambda functions
 functions/
+
+# VS workspace
+*.code-workspace
