@@ -4,10 +4,10 @@ import formatTravelsProposals from './api/format'
 import { STOP_CODES, URLS } from './api/constants'
 
 const travelsProposals = async (
-    originCode,
-    destinationCode,
-    fromDatetime,
-    toDatetime = null
+    originCode: string,
+    destinationCode: string,
+    fromDatetime: string,
+    toDatetime: string = null
 ) => {
     /**
      * Gather travels proposals from SNCF online service, according to input parameters.
@@ -52,7 +52,7 @@ const travelsProposals = async (
         // Wish
         const wish = await getWish(originCode, destinationCode, fromDatetime)
         // Pause 200 ms
-        await new Promise(resolve => setTimeout(resolve, 200))
+        await new Promise((resolve) => setTimeout(resolve, 200))
         // Proposals
         const { proposals, fares } = await getTravelsProposalsWithFares(
             wish,

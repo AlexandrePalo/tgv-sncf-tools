@@ -4,9 +4,9 @@ import moment from 'moment-timezone'
 import { URLS } from './constants'
 
 async function getTravelsProposalsWithFares(
-    fullWish,
-    fromDatetime,
-    toDatetime = null
+    fullWish: any,
+    fromDatetime: string,
+    toDatetime: string = null
 ) {
     /**
      * Gather travels proposals from SNCF online service, according to created wish object.
@@ -47,8 +47,8 @@ async function getTravelsProposalsWithFares(
 
     // Call
     let shouldStop = false
-    let proposals = []
-    let fares = []
+    let proposals: any = []
+    let fares: any = []
 
     // Loop API calls
     do {
@@ -61,13 +61,13 @@ async function getTravelsProposalsWithFares(
                               departureDate:
                                   proposals[proposals.length - 1].departureDate,
                               arrivalDate:
-                                  proposals[proposals.length - 1].arrivalDate
-                          }
-                      }
+                                  proposals[proposals.length - 1].arrivalDate,
+                          },
+                      },
                   }
         const fetchUrl = proposals.length <= 0 ? trainUrl : trainNextUrl
 
-        await new Promise(resolve => setTimeout(resolve, 200))
+        await new Promise((resolve) => setTimeout(resolve, 200))
 
         await fetch(fetchUrl, {
             method: 'post',
@@ -75,15 +75,15 @@ async function getTravelsProposalsWithFares(
             headers: {
                 'Content-Type': 'application/json',
                 'User-Agent':
-                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
-            }
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+            },
         })
-            .then(async res => {
+            .then(async (res) => {
                 return await res.json()
             })
-            .then(json => {
+            .then((json) => {
                 fares = [...fares, ...json.fares].filter((v, i, self) => {
-                    return self.map(x => x.label).indexOf(v.label) === i
+                    return self.map((x) => x.label).indexOf(v.label) === i
                 })
 
                 if (proposals.length > 0) {
@@ -107,7 +107,7 @@ async function getTravelsProposalsWithFares(
                     }
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 throw new Error(
                     'getTravelsProposalsWithFares - SNCF API response was not expected during proposals call.'
                 )
@@ -118,7 +118,7 @@ async function getTravelsProposalsWithFares(
     Some proposals given are before the fromDatetime due to the API. Ex: 18h gives 17h40 train.
     It should be strict.
     */
-    proposals = proposals.filter(p => {
+    proposals = proposals.filter((p: any) => {
         if (
             moment(p.departureDate, 'YYYY-MM-DD[T]HH:mm:ss').isSameOrAfter(
                 moment(fromDatetime, 'YYYY-MM-DD[T]HH:mm:ss')

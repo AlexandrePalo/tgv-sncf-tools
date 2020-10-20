@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+
+        "target": "ESNEXT",
+        "module": "ESNEXT",
+
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "removeComments": true,
+        "resolveJsonModule": true
+    },
+    "exclude": ["node_modules"]
+}

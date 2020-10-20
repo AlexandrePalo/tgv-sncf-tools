@@ -5,13 +5,11 @@ const { travelsProposals } = require('../dist/bundle')
 
 const origin = { code: 'FRADE', name: 'Metz Ville' }
 const destination = { code: 'FRPST', name: 'Paris Est' }
-let fromDatetime = `${moment()
-    .add(1, 'M')
-    .format('YYYY-MM-DD')}T10:00:00`
+let fromDatetime = `${moment().add(1, 'M').format('YYYY-MM-DD')}T10:00:00`
 
 let toDatetime = `${moment(fromDatetime).format('YYYY-MM-DD')}T18:00:00`
 
-const humanizeDuration = duration => {
+const humanizeDuration = (duration) => {
     return `${Math.trunc(duration / 3600)}h${(duration % 3600) / 60}`
 }
 
@@ -26,7 +24,7 @@ the {red ${moment(fromDatetime).format('DD/MM/YYYY')}} between {red ${moment(
 const spinner = ora('Loading data').start()
 
 travelsProposals(origin.code, destination.code, fromDatetime, toDatetime).then(
-    data => {
+    (data) => {
         spinner.stop()
 
         console.log(chalk`{bold ${data.length}} travels found:`)

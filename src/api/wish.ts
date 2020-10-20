@@ -1,7 +1,11 @@
 import fetch from 'node-fetch'
 import { STOP_CODES, URLS } from './constants'
 
-async function getWish(originCode, destinationCode, fromDatetime) {
+async function getWish(
+    originCode: string,
+    destinationCode: string,
+    fromDatetime: string
+) {
     /**
      * Create wish object from SNCF online service, according input parameters.
      * @param {string} originCode - SNCF station code of the origin station, must be in STOP_CODES.
@@ -34,22 +38,22 @@ async function getWish(originCode, destinationCode, fromDatetime) {
     const fullWishBaseUrl = URLS.FULL_WISH_BASE_URL
 
     // Call
-    const body = {
+    const body: any = {
         mainJourney: {
             origin: {
-                code: originCode
+                code: originCode,
             },
             destination: {
-                code: destinationCode
+                code: destinationCode,
             },
-            via: null
+            via: null,
         },
         directTravel: true,
         schedule: {
             outward: `${fromDatetime}`,
             outwardType: 'DEPARTURE_FROM',
             inward: null,
-            inwardType: 'DEPARTURE_FROM'
+            inwardType: 'DEPARTURE_FROM',
         },
         travelClass: 'SECOND', // variable
         passengers: [
@@ -61,10 +65,10 @@ async function getWish(originCode, destinationCode, fromDatetime) {
                 discountCard: { type: 'NONE', number: '' },
                 fidelityCard: { type: 'NONE', number: '' },
                 promoCode: '',
-                bicycle: null
-            }
+                bicycle: null,
+            },
         ],
-        salesMarket: 'fr-FR'
+        salesMarket: 'fr-FR',
     }
 
     // First wish call
@@ -74,13 +78,13 @@ async function getWish(originCode, destinationCode, fromDatetime) {
         headers: {
             'Content-Type': 'application/json',
             'User-Agent':
-                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
-        }
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+        },
     })
-        .then(async res => {
+        .then(async (res) => {
             return await res.json()
         })
-        .catch(err => {
+        .catch((err) => {
             throw new Error(
                 'getWish - SNCF API response was not expected during first wish call.'
             )
@@ -88,7 +92,7 @@ async function getWish(originCode, destinationCode, fromDatetime) {
     const wishId = jsonWishCreated.id
 
     // Pause 200 ms
-    await new Promise(resolve => setTimeout(resolve, 200))
+    await new Promise((resolve) => setTimeout(resolve, 200))
 
     // Full wish call
     const fullWish = await fetch(`${fullWishBaseUrl}${wishId}`, {
@@ -96,13 +100,13 @@ async function getWish(originCode, destinationCode, fromDatetime) {
         headers: {
             'Content-Type': 'application/json',
             'User-Agent':
-                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
-        }
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+        },
     })
-        .then(async res => {
+        .then(async (res) => {
             return await res.json()
         })
-        .catch(err => {
+        .catch((err) => {
             throw new Error(
                 'getWish - SNCF API response was not expected during full wish call.'
             )

@@ -6,15 +6,15 @@ const STOP_CODES = [
     ['FREAM', 'Lorraine TGV'],
     ['FREAH', 'Champagne Ardennes TGV'],
     ['FREAJ', 'Meuse TGV'],
-    ['LULUX', 'Luxembourg']
-].map(i => i[0])
+    ['LULUX', 'Luxembourg'],
+].map((i) => i[0])
 
 const URLS = {
     WISHES_URL: 'https://www.oui.sncf/wishes-api/wishes',
     FULL_WISH_BASE_URL: 'https://www.oui.sncf/proposition/rest/wishes/',
     TRAIN_URL: 'https://www.oui.sncf/proposition/rest/travels/outward/train',
     TRAIN_NEXT_URL:
-        'https://www.oui.sncf/proposition/rest/travels/outward/train/next'
+        'https://www.oui.sncf/proposition/rest/travels/outward/train/next',
 }
 
 export { STOP_CODES, URLS }

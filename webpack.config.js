@@ -1,27 +1,23 @@
 const webpack = require('webpack')
 const path = require('path')
 
-let config = {
-    entry: './src/index.js',
+module.exports = {
+    mode: 'development',
+    entry: './src/index.ts',
     output: {
-        path: path.resolve('dist'),
-        filename: 'bundle.js',
-        libraryTarget: 'umd'
+        filename: './bundle.js',
+        libraryTarget: 'umd',
+    },
+    devtool: 'source-map',
+    resolve: {
+        extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
     },
     module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            }
-        ]
+        rules: [{ test: /\.ts$/, use: 'ts-loader', exclude: /node_modules/ }],
     },
-    resolve: {
-        extensions: ['.js']
-    },
-    mode: 'production',
-    target: 'node'
+    target: 'node',
+    plugins: [
+        // Ignore moment locales
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    ],
 }
-
-module.exports = config

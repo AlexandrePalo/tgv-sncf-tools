@@ -53,9 +53,11 @@
  * isHighlight
  */
 
-const formatFirstClassOffers = (firstClassOffers, fares) => {
-    return firstClassOffers.offers.map(fco => {
-        const f = fares.find(f => f.label === fco.passengerOffers[0].fares[0])
+const formatFirstClassOffers = (firstClassOffers: any, fares: any) => {
+    return firstClassOffers.offers.map((fco: any) => {
+        const f = fares.find(
+            (f: any) => f.label === fco.passengerOffers[0].fares[0]
+        )
         return {
             id: fco.id,
             amount: fco.amount,
@@ -66,15 +68,17 @@ const formatFirstClassOffers = (firstClassOffers, fares) => {
                 code: f.code,
                 returnMandatory: f.returnMandatory,
                 conditionsVerboseFrench: f.conditions,
-                advantageCard: f.advantageCard
-            }
+                advantageCard: f.advantageCard,
+            },
         }
     })
 }
 
-const formatSecondClassOffers = (secondClassOffers, fares) => {
-    return secondClassOffers.offers.map(sco => {
-        const f = fares.find(f => f.label === sco.passengerOffers[0].fares[0])
+const formatSecondClassOffers = (secondClassOffers: any, fares: any) => {
+    return secondClassOffers.offers.map((sco: any) => {
+        const f = fares.find(
+            (f: any) => f.label === sco.passengerOffers[0].fares[0]
+        )
         return {
             id: sco.id,
             amount: sco.amount,
@@ -86,15 +90,15 @@ const formatSecondClassOffers = (secondClassOffers, fares) => {
                       code: f.code,
                       returnMandatory: f.returnMandatory,
                       conditionsVerboseFrench: f.conditions,
-                      advantageCard: f.advantageCard
+                      advantageCard: f.advantageCard,
                   }
-                : undefined
+                : undefined,
         }
     })
 }
 
-const formatTravelsProposals = (travelsProposals, fares) => {
-    return travelsProposals.map(tp => {
+const formatTravelsProposals = (travelsProposals: any, fares: any) => {
+    return travelsProposals.map((tp: any) => {
         return {
             id: tp.id,
             unsellableReason: tp.unsellableReason
@@ -108,13 +112,13 @@ const formatTravelsProposals = (travelsProposals, fares) => {
                 station: tp.origin.station.label,
                 city: tp.origin.city.label,
                 longitude: tp.origin.longitude,
-                latitude: tp.origin.latitude
+                latitude: tp.origin.latitude,
             },
             destination: {
                 station: tp.destination.station.label,
                 city: tp.destination.city.label,
                 longitude: tp.destination.longitude,
-                latitude: tp.destination.latitude
+                latitude: tp.destination.latitude,
             },
             segmentId: tp.segments[0].id,
             transporter: tp.segments[0].transporter,
@@ -127,7 +131,7 @@ const formatTravelsProposals = (travelsProposals, fares) => {
             secondClassOffers: formatSecondClassOffers(
                 tp.secondClassOffers,
                 fares
-            )
+            ),
         }
     })
 }
